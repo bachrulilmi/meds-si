@@ -32,6 +32,16 @@ $this->title = 'Best Inventory';
     <h3 class="box-title">Upload Data</h3>
   </div>
   <!-- /.box-header -->
+  <!-- flash message -->
+  <?php if (Yii::$app->session->hasFlash('success-upload')): ?>
+
+        <div class="alert alert-success alert-dismissible">
+                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                <h4><i class="icon fa fa-check"></i> Success!</h4>
+                Data berhasil diupload.
+              </div>
+    <?php endif; ?>    
+    <!-- flash message-end -->
   <!-- form start -->
   <form id="formupload" role="form" action="<?= Url::to(['upload/process-data']); ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
@@ -79,7 +89,11 @@ $this->title = 'Best Inventory';
             <label>Distributor/Principal</label>
             <select name="prin" class="form-control">
               <option value="BEST">BEST</option>
-              <option value="PIT">PII</option>
+              <option value="PII">PII</option>
+              <option value="ALIDA">ALIDA</option>
+              <option value="KP">KP</option>
+              <option value="MHF BOGOR">MHF BOGOR</option>
+              <option value="MHF PUSAT">MHF PUSAT</option>
 
             </select>
           </div>
