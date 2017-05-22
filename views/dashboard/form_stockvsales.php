@@ -11,11 +11,11 @@ $this->title = 'Best Inventory';
 <!-- general form elements -->
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Show Information</h3>
+    <h3 class="box-title">Report Stock vs Sales</h3>
   </div>
   <!-- /.box-header -->
   <!-- form start -->
-  <form id="formupload" role="form" action="<?= Url::to(['dashboard/show-data']); ?>" method="post" enctype="multipart/form-data">
+  <form id="formupload" role="form" action="<?= Url::to(['dashboard/report_stockvsales']); ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
     <div class="box-body">
       <div class="row">
@@ -55,39 +55,14 @@ $this->title = 'Best Inventory';
         </div>
       </div>
 
-      <div class="row">
-        <div class="col-xs-7">
-          <div class="form-group">
-            <label>Distributor/Principal</label>
-            <select name="prin" class="form-control">
-              <option value="BEST">Stock - BEST</option>
-              <option value="PII">Stock - PII</option>
-              <option value="ALIDA">Stock - ALIDA</option>
-              <option value="KP">Stock - KP</option>
-              <option value="MAP">Stock - MAP</option>
-              <option value="MHF BOGOR">Stock - MHF BOGOR</option>
-              <option value="MHF PUSAT">Stock - MHF PUSAT</option>
-              <option value="NSI">Stock - NSI</option>
-              <option value="IN">Sales - IN</option>
-              <option value="OUT - ALIDA">Sales - ALIDA</option>
-              <option value="OUT - KP">Sales - KP</option>
-              <option value="OUT - MAP">Sales - MAP</option>
-              <option value="OUT - MHF BOGOR">Sales - MHF BOGOR</option>
-              <option value="OUT - MHF PUSAT">Sales - MHF PUSAT</option>
-              <option value="OUT - NSI">Sales - NSI</option>
-              <option value="OUT - SURYATARA">Sales - SURYATARA</option>
-
-            </select>
-          </div>
-        </div>
-      </div>
+      
 
 
     </div>
     <!-- /.box-body -->
 
     <div class="box-footer">
-      <button id="tombolsubmit" type="submit" class="btn btn-primary">Tampilkan</button>
+      <button id="tombolsubmit" type="submit" class="btn btn-primary">Generate Report</button>
     </div>
   </form>
 </div>

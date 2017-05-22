@@ -29,7 +29,7 @@ $this->title = 'Best Inventory';
 <!-- general form elements -->
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Upload Data</h3>
+    <h3 class="box-title">Upload Data Stock</h3>
   </div>
   <!-- /.box-header -->
   <!-- flash message -->

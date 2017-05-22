@@ -16,9 +16,11 @@
             'options' => ['class' => 'sidebar-menu'],
             'items' => [
             ['label' => 'Menu', 'options' => ['class' => 'header']],
-            ['label' => 'Upload Data', 'icon' => 'file-code-o', 'url' => ['upload/index']],
+            ['label' => 'Upload Data Stock', 'icon' => 'file-code-o', 'url' => ['upload/index']],
+            ['label' => 'Upload Data Sales', 'icon' => 'file-code-o', 'url' => ['upload/sales']],
             ['label' => 'Manual Input Data', 'icon' => 'book', 'url' => ['upload/manual-input']],
             ['label' => 'Dashboard', 'icon' => 'dashboard', 'url' => ['dashboard/index']],
+            ['label' => 'Report Stock vs Sales', 'icon' => 'dashboard', 'url' => ['dashboard/stockvsales']],
             ['label' => 'Logout', 'icon' => 'sign-out','url' => ['site/logout']],
 
             ],
