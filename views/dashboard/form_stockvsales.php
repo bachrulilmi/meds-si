@@ -1,5 +1,6 @@
 <?php
 use yii\helpers\Url;
+use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
@@ -61,9 +62,35 @@ $this->title = 'Best Inventory';
     </div>
     <!-- /.box-body -->
 
+
+
     <div class="box-footer">
       <button id="tombolsubmit" type="submit" class="btn btn-primary">Generate Report</button>
     </div>
   </form>
+</div>
+
+<div class="box box-primary">
+  <div class="box-header with-border">
+    <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">
+      <thead>
+        <tr>
+          <th>Periode Report</th>
+
+        </tr>
+      </thead>
+      <tbody>
+
+<?php foreach ($data as $d): ?>
+      <tr>
+        
+          <td><a href=""><?= Html::encode($d->periode)?></a></td>
+
+        </tr>
+      <?php endforeach; ?>
+
+      </tbody>
+    </table>
+  </div>
 </div>
           <!-- /.box -->

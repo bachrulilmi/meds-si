@@ -32,7 +32,9 @@ class DashboardController extends Controller
 
     public function actionStockvsales()
     {
-        return $this->render('form_stockvsales');
+        $q = Reporting::find()->select('periode')->distinct()
+            ->all();
+        return $this->render('form_stockvsales',['data' => $q]);
     }
 
     public function actionReport_stockvsales()
