@@ -52,4 +52,10 @@ class Reporting extends \yii\db\ActiveRecord
             'sales_out' => 'Sales Out',
         ];
     }
+
+    public function getMstBarang()
+    {
+        return $this->hasOne(MstBarang::className(), ['kode_barang' => 'kode_barang']);
+
+    }
 }

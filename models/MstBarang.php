@@ -53,4 +53,9 @@ class MstBarang extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Sales::className(), ['kode_barang' => 'kode_barang']);
     }
+
+    public function getReporting()
+    {
+        return $this->hasMany(Reporting::className(), ['kode_barang' => 'kode_barang']);
+    }
 }

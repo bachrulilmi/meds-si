@@ -84,7 +84,7 @@ $this->title = 'Best Inventory';
 <?php foreach ($data as $d): ?>
       <tr>
         
-          <td><a href=""><?= Html::encode($d->periode)?></a></td>
+          <td><a href="<?= Url::to(['dashboard/show-great-report', 'periode' =>$d->periode ]) ?>"><?= Html::encode($d->periode)?></a></td>
 
         </tr>
       <?php endforeach; ?>

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 23 Mei 2017 pada 01.23
+-- Generation Time: 27 Mei 2017 pada 00.43
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -620,6 +620,34 @@ INSERT INTO `sales` (`kode_barang`, `kuantitas`, `periode`, `principal`) VALUES
 ('9', 39, 'Februari 2017', 'OUT - MHF BOGOR'),
 ('9', 196, 'Januari 2017', 'IN'),
 ('9', 514, 'Januari 2017', 'OUT - KP');
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trn_others`
+--
+
+DROP TABLE IF EXISTS `trn_others`;
+CREATE TABLE `trn_others` (
+  `periode` varchar(20) DEFAULT NULL,
+  `kode_barang` varchar(20) DEFAULT NULL,
+  `kuantitas` int(11) DEFAULT NULL,
+  `type` varchar(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Struktur dari tabel `trn_po`
+--
+
+DROP TABLE IF EXISTS `trn_po`;
+CREATE TABLE `trn_po` (
+  `periode` varchar(20) DEFAULT NULL,
+  `no_po` varchar(20) DEFAULT NULL,
+  `kode_barang` varchar(20) DEFAULT NULL,
+  `kuantitas` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Indexes for dumped tables

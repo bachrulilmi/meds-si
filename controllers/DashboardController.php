@@ -164,6 +164,18 @@ class DashboardController extends Controller
         //return $this->render('index',['data' => $q,'periode'=>$periode, 'disti'=>$principal]);
     }
 
+    public function actionShowGreatReport($periode){
+
+
+        $q = Reporting::find()
+            ->with('mstBarang')
+            ->where(['periode'=> $periode])
+            ->all();
+
+        return $this->render('greatreport',['data' => $q,'periode'=>$periode]);
+
+    }
+
     public function actionShowData()
     {
         $request = Yii::$app->request;
