@@ -14,6 +14,8 @@ use Yii;
  * @property integer $stock_pii
  * @property integer $sales_in
  * @property integer $sales_out
+ * @property integer $proses
+ * @property integer $stock_otw
  */
 class Reporting extends \yii\db\ActiveRecord
 {
@@ -31,7 +33,8 @@ class Reporting extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['stock_disti', 'stock_best', 'stock_pii', 'sales_in', 'sales_out'], 'integer'],
+            [['periode', 'kode_barang'], 'required'],
+            [['stock_disti', 'stock_best', 'stock_pii', 'sales_in', 'sales_out', 'proses', 'stock_otw'], 'integer'],
             [['periode'], 'string', 'max' => 100],
             [['kode_barang'], 'string', 'max' => 11],
         ];
@@ -50,12 +53,14 @@ class Reporting extends \yii\db\ActiveRecord
             'stock_pii' => 'Stock Pii',
             'sales_in' => 'Sales In',
             'sales_out' => 'Sales Out',
+            'proses' => 'Proses',
+            'stock_otw' => 'Stock Otw',
         ];
     }
 
-    public function getMstBarang()
-    {
-        return $this->hasOne(MstBarang::className(), ['kode_barang' => 'kode_barang']);
-
-    }
+    public function getMstBarang() 
+           { 
+               return $this->hasOne(MstBarang::className(), ['kode_barang' => 'kode_barang']); 
+         
+           } 
 }

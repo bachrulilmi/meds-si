@@ -11,6 +11,7 @@ use yii\helpers\Url;
 use app\models\MstBarang;
 use app\models\Inventory;
 use app\models\Sales;
+use app\models\TrnPo;
 
 
 class UploadController extends Controller
@@ -58,6 +59,12 @@ class UploadController extends Controller
     {
         Url::remember();
         return $this->render('sales');
+    }
+
+    public function actionPo()
+    {
+        Url::remember();
+        return $this->render('po');
     }
 
     public function actionManualInput(){
@@ -327,6 +334,21 @@ class UploadController extends Controller
                     }
                 } 
         break;
+
+        case "PO":
+               for ($row = 1; $row <= $lastRow; $row++) {
+
+                   $datacell = $worksheet->getCell('B'.$row)->getValue();
+                   $query = MstBarang::find()->where(['alias' => $datacell]);
+                   if($query->count() > 0){
+                    $data = $query->one();
+                    $qty = intval($worksheet->getCell('C'.$row)->getValue());
+                    $this->SimpanPO($data->kode_barang,$qty,$periode);
+                            
+                    }
+                } 
+        break;
+
         default:
         echo "Your favorite color is neither red, blue, nor green!";
         }
@@ -347,63 +369,91 @@ class UploadController extends Controller
         }
     }
 
-private function SimpanSales($kd_brg,$qty,$periode,$principal){
-    $q = Sales::find()
-    ->where(['kode_barang' => $kd_brg])
-    ->andWhere(['periode'=> $periode])
-    ->andWhere(['principal'=> $principal]);
+    private function SimpanPO($kd_brg,$qty,$periode,$nopo){
+        $q = TrnPo::find()
+        ->where(['kode_barang' => $kd_brg])
+        ->andWhere(['periode'=> $periode]);
 
-    if($q->count() > 0){
-        $q2 = $q->one();
-        $q2->kuantitas = $q2->kuantitas + $qty;
-        $q2->save(false);
-
-    }else{
-        $new = new Sales();
-        $new->kode_barang = (string)($kd_brg);
-        $new->kuantitas = $qty;
-        $new->periode = $periode;
-        $new->principal = $principal;
-        if($new->save()){
+        if($q->count() > 0){
+            $q2 = $q->one();
+            $q2->kuantitas = $q2->kuantitas + $qty;
+            $q2->save(false);
 
         }else{
+            $new = new Sales();
+            $new->kode_barang = (string)($kd_brg);
+            $new->kuantitas = $qty;
+            $new->periode = $periode;
+            $new->principal = $principal;
+            if($new->save()){
 
-            var_dump($new->getErrors());
-            return false;
+            }else{
+
+                var_dump($new->getErrors());
+                return false;
+            }
         }
+
+        return true;
     }
 
-    return true;
-}
+    private function SimpanSales($kd_brg,$qty,$periode,$principal){
+        $q = Sales::find()
+        ->where(['kode_barang' => $kd_brg])
+        ->andWhere(['periode'=> $periode])
+        ->andWhere(['principal'=> $principal]);
 
-private function SimpanInventory($kd_brg,$qty,$periode,$principal){
-    $q = Inventory::find()
-    ->where(['kode_barang' => $kd_brg])
-    ->andWhere(['periode'=> $periode])
-    ->andWhere(['principal'=> $principal]);
-
-    if($q->count() > 0){
-        $q2 = $q->one();
-        $q2->kuantitas = $q2->kuantitas + $qty;
-        $q2->save(false);
-
-    }else{
-        $new = new Inventory();
-        $new->kode_barang = (string)($kd_brg);
-        $new->kuantitas = $qty;
-        $new->periode = $periode;
-        $new->principal = $principal;
-        if($new->save()){
+        if($q->count() > 0){
+            $q2 = $q->one();
+            $q2->kuantitas = $q2->kuantitas + $qty;
+            $q2->save(false);
 
         }else{
+            $new = new Sales();
+            $new->kode_barang = (string)($kd_brg);
+            $new->kuantitas = $qty;
+            $new->periode = $periode;
+            $new->principal = $principal;
+            if($new->save()){
 
-            var_dump($new->getErrors());
-            return false;
+            }else{
+
+                var_dump($new->getErrors());
+                return false;
+            }
         }
+
+        return true;
     }
 
-    return true;
-}
+    private function SimpanInventory($kd_brg,$qty,$periode,$principal){
+        $q = Inventory::find()
+        ->where(['kode_barang' => $kd_brg])
+        ->andWhere(['periode'=> $periode])
+        ->andWhere(['principal'=> $principal]);
+
+        if($q->count() > 0){
+            $q2 = $q->one();
+            $q2->kuantitas = $q2->kuantitas + $qty;
+            $q2->save(false);
+
+        }else{
+            $new = new Inventory();
+            $new->kode_barang = (string)($kd_brg);
+            $new->kuantitas = $qty;
+            $new->periode = $periode;
+            $new->principal = $principal;
+            if($new->save()){
+
+            }else{
+
+                var_dump($new->getErrors());
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 
 }

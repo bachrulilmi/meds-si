@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: 27 Mei 2017 pada 00.43
+-- Generation Time: 30 Mei 2017 pada 00.59
 -- Versi Server: 10.1.9-MariaDB
 -- PHP Version: 5.6.15
 
@@ -451,62 +451,64 @@ CREATE TABLE `reporting` (
   `stock_best` int(11) DEFAULT '0',
   `stock_pii` int(11) DEFAULT '0',
   `sales_in` int(11) DEFAULT '0',
-  `sales_out` int(11) DEFAULT '0'
+  `sales_out` int(11) DEFAULT '0',
+  `proses` int(11) DEFAULT '0',
+  `stock_otw` int(11) DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data untuk tabel `reporting`
 --
 
-INSERT INTO `reporting` (`periode`, `kode_barang`, `stock_disti`, `stock_best`, `stock_pii`, `sales_in`, `sales_out`) VALUES
-('Januari 2017', '1', 1159, 0, 0, 0, -208),
-('Januari 2017', '10', 432, 10056, 0, 636, 357),
-('Januari 2017', '11', 741, 12690, 0, 427, 291),
-('Januari 2017', '12', 7, 5222, 0, 358, 0),
-('Januari 2017', '13', 147, 6288, 0, 152, 0),
-('Januari 2017', '14', 734, 4660, 115, 65, -332),
-('Januari 2017', '15', 79, 8470, 4430, 452, 0),
-('Januari 2017', '16', 313, 7216, 2812, 320, 0),
-('Januari 2017', '17', 5, 2648, 12335, 48, 0),
-('Januari 2017', '18', 123, 11644, 0, 209, 0),
-('Januari 2017', '19', 27, 1356, 0, 28, 0),
-('Januari 2017', '2', 252, 3924, 0, 872, 0),
-('Januari 2017', '20', 0, 16074, 0, 671, 0),
-('Januari 2017', '21', 117, 2544, 0, 409, 0),
-('Januari 2017', '22', 0, 6916, 8341, 194, 0),
-('Januari 2017', '23', 150, 19524, 324, 0, 0),
-('Januari 2017', '24', 60, 10842, 169, 624, 16),
-('Januari 2017', '25', 9, 5728, 0, 55, 0),
-('Januari 2017', '26', 11, 11412, 0, 251, 0),
-('Januari 2017', '27', 16, 6386, 15626, 120, 0),
-('Januari 2017', '28', 111, 6008, 300, 205, 0),
-('Januari 2017', '29', 87, 15866, 513607, 79, 0),
-('Januari 2017', '3', 0, 6582, 0, -9, 0),
-('Januari 2017', '30', 0, 9240, 0, -2, 0),
-('Januari 2017', '31', 293, 2460, 9334, 216, 0),
-('Januari 2017', '32', 81, 2438, 0, 2792, 0),
-('Januari 2017', '33', 164, -3318, 0, 583, 0),
-('Januari 2017', '34', 40, 220, 0, 831, 0),
-('Januari 2017', '35', 160, 36, 0, 360, 0),
-('Januari 2017', '36', 0, 2126, 0, 150, 0),
-('Januari 2017', '37', 101, 4034, 0, 2132, 0),
-('Januari 2017', '38', 65, -3538, 0, 429, 0),
-('Januari 2017', '39', 4, 3636, 0, 78, 0),
-('Januari 2017', '4', 227, 26276, 0, 4254, 39),
-('Januari 2017', '40', 20, 4842, 0, 82, 0),
-('Januari 2017', '41', 0, 644, 0, -3, 0),
-('Januari 2017', '42', 119, 26928, 177000, 638, 0),
-('Januari 2017', '43', 207, 12470, 0, 731, 0),
-('Januari 2017', '44', 10, -1872, 0, 477, 0),
-('Januari 2017', '45', 513, 3464, 84, 161, 0),
-('Januari 2017', '46', 125, 32, 4980, 145, 0),
-('Januari 2017', '47', 107, 1096, 0, 1864, 0),
-('Januari 2017', '48', 16, 362, 0, 973, 0),
-('Januari 2017', '5', 1280, 2382, 0, -9, 505),
-('Januari 2017', '6', 119, 7872, 4050, -117, -94),
-('Januari 2017', '7', 1823, 12876, 16, 68, 136),
-('Januari 2017', '8', 1351, 2610, 63553, 429, 124),
-('Januari 2017', '9', 344, 1026, 3947, 196, 514);
+INSERT INTO `reporting` (`periode`, `kode_barang`, `stock_disti`, `stock_best`, `stock_pii`, `sales_in`, `sales_out`, `proses`, `stock_otw`) VALUES
+('Januari 2017', '1', 1159, 0, 0, 0, -208, 2, 20),
+('Januari 2017', '10', 432, 10056, 0, 636, 357, 32, 9),
+('Januari 2017', '11', 741, 12690, 0, 427, 291, 0, 0),
+('Januari 2017', '12', 7, 5222, 0, 358, 0, 0, 0),
+('Januari 2017', '13', 147, 6288, 0, 152, 0, 0, 0),
+('Januari 2017', '14', 734, 4660, 115, 65, -332, 0, 0),
+('Januari 2017', '15', 79, 8470, 4430, 452, 0, 0, 0),
+('Januari 2017', '16', 313, 7216, 2812, 320, 0, 0, 2),
+('Januari 2017', '17', 5, 2648, 12335, 48, 0, 0, 0),
+('Januari 2017', '18', 123, 11644, 0, 209, 0, 0, 0),
+('Januari 2017', '19', 27, 1356, 0, 28, 0, 43, 0),
+('Januari 2017', '2', 252, 3924, 0, 872, 0, 0, 0),
+('Januari 2017', '20', 0, 16074, 0, 671, 0, 0, 0),
+('Januari 2017', '21', 117, 2544, 0, 409, 0, 0, 0),
+('Januari 2017', '22', 0, 6916, 8341, 194, 0, 0, 12),
+('Januari 2017', '23', 150, 19524, 324, 0, 0, 0, 0),
+('Januari 2017', '24', 60, 10842, 169, 624, 16, 0, 0),
+('Januari 2017', '25', 9, 5728, 0, 55, 0, 54, 0),
+('Januari 2017', '26', 11, 11412, 0, 251, 0, 0, 0),
+('Januari 2017', '27', 16, 6386, 15626, 120, 0, 0, 0),
+('Januari 2017', '28', 111, 6008, 300, 205, 0, 0, 0),
+('Januari 2017', '29', 87, 15866, 513607, 79, 0, 0, 0),
+('Januari 2017', '3', 0, 6582, 0, -9, 0, 0, 0),
+('Januari 2017', '30', 0, 9240, 0, -2, 0, 0, 0),
+('Januari 2017', '31', 293, 2460, 9334, 216, 0, 0, 0),
+('Januari 2017', '32', 81, 2438, 0, 2792, 0, 0, 0),
+('Januari 2017', '33', 164, -3318, 0, 583, 0, 0, 0),
+('Januari 2017', '34', 40, 220, 0, 831, 0, 0, 0),
+('Januari 2017', '35', 160, 36, 0, 360, 0, 0, 0),
+('Januari 2017', '36', 0, 2126, 0, 150, 0, 0, 0),
+('Januari 2017', '37', 101, 4034, 0, 2132, 0, 0, 0),
+('Januari 2017', '38', 65, -3538, 0, 429, 0, 0, 0),
+('Januari 2017', '39', 4, 3636, 0, 78, 0, 0, 0),
+('Januari 2017', '4', 227, 26276, 0, 4254, 39, 0, 0),
+('Januari 2017', '40', 20, 4842, 0, 82, 0, 0, 0),
+('Januari 2017', '41', 0, 644, 0, -3, 0, 0, 0),
+('Januari 2017', '42', 119, 26928, 177000, 638, 0, 0, 0),
+('Januari 2017', '43', 207, 12470, 0, 731, 0, 0, 0),
+('Januari 2017', '44', 10, -1872, 0, 477, 0, 0, 0),
+('Januari 2017', '45', 513, 3464, 84, 161, 0, 0, 0),
+('Januari 2017', '46', 125, 32, 4980, 145, 0, 0, 0),
+('Januari 2017', '47', 107, 1096, 0, 1864, 0, 0, 0),
+('Januari 2017', '48', 16, 362, 0, 973, 0, 0, 0),
+('Januari 2017', '5', 1280, 2382, 0, -9, 505, 0, 0),
+('Januari 2017', '6', 119, 7872, 4050, -117, -94, 0, 0),
+('Januari 2017', '7', 1823, 12876, 16, 68, 136, 0, 0),
+('Januari 2017', '8', 1351, 2610, 63553, 429, 124, 0, 0),
+('Januari 2017', '9', 344, 1026, 3947, 196, 514, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -643,11 +645,25 @@ CREATE TABLE `trn_others` (
 
 DROP TABLE IF EXISTS `trn_po`;
 CREATE TABLE `trn_po` (
-  `periode` varchar(20) DEFAULT NULL,
-  `no_po` varchar(20) DEFAULT NULL,
-  `kode_barang` varchar(20) DEFAULT NULL,
+  `periode` varchar(20) NOT NULL,
+  `no_po` varchar(20) NOT NULL,
+  `kode_barang` varchar(20) NOT NULL,
   `kuantitas` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data untuk tabel `trn_po`
+--
+
+INSERT INTO `trn_po` (`periode`, `no_po`, `kode_barang`, `kuantitas`) VALUES
+('Januari 2017', 'PO.075/PII/XI/16', '2', 20),
+('Januari 2017', 'PO.075/PII/XI/16', '20', 3),
+('Januari 2017', 'PO.075/PII/XI/16', '21', 323),
+('Januari 2017', 'PO.075/PII/XI/16', '24', 423),
+('Januari 2017', 'PO.077/PII/IX/16', '1', 302),
+('Januari 2017', 'PO.077/PII/IX/16', '2', 42333),
+('Januari 2017', 'PO.077/PII/IX/16', '20', 41113),
+('Januari 2017', 'PO.077/PII/IX/16', '24', 42321);
 
 --
 -- Indexes for dumped tables
@@ -670,6 +686,12 @@ ALTER TABLE `reporting`
 --
 ALTER TABLE `sales`
   ADD PRIMARY KEY (`kode_barang`,`periode`,`principal`);
+
+--
+-- Indexes for table `trn_po`
+--
+ALTER TABLE `trn_po`
+  ADD PRIMARY KEY (`periode`,`no_po`,`kode_barang`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
