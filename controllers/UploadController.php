@@ -12,6 +12,7 @@ use app\models\MstBarang;
 use app\models\Inventory;
 use app\models\Sales;
 use app\models\TrnPo;
+use app\models\TrnOthers;
 
 
 class UploadController extends Controller
@@ -67,6 +68,12 @@ class UploadController extends Controller
         return $this->render('po');
     }
 
+    public function actionOthers()
+    {
+        Url::remember();
+        return $this->render('others');
+    }    
+
     public function actionManualInput(){
         $query = MstBarang::find()->select(['kode_barang', 'nama_barang'])->distinct()->all();
 
@@ -79,7 +86,7 @@ class UploadController extends Controller
         $request = Yii::$app->request;
         $periode = $request->post('bulan')." ".$request->post('tahun');
         $principal = $request->post('prin');
-
+        
         $file = UploadedFile::getInstanceByName('datareport');
         if(!empty($file)){
             $newname = Yii::$app->getSecurity()->generateRandomString(10).$file->baseName.'.'.$file->extension;
@@ -343,7 +350,23 @@ class UploadController extends Controller
                    if($query->count() > 0){
                     $data = $query->one();
                     $qty = intval($worksheet->getCell('C'.$row)->getValue());
-                    $this->SimpanPO($data->kode_barang,$qty,$periode);
+                    $no_po = $worksheet->getCell('B4')->getValue();
+                    $this->SimpanPO($data->kode_barang,$qty,$periode,$no_po);
+                            
+                    }
+                } 
+        break;
+
+        case "Others":
+               for ($row = 1; $row <= $lastRow; $row++) {
+
+                   $datacell = $worksheet->getCell('B'.$row)->getValue();
+                   $query = MstBarang::find()->where(['alias' => $datacell]);
+                   if($query->count() > 0){
+                    $data = $query->one();
+                    $qty = intval($worksheet->getCell('C'.$row)->getValue());
+                    $type = $worksheet->getCell('B4')->getValue();
+                    $this->SimpanOthers($data->kode_barang,$qty,$periode,$type);
                             
                     }
                 } 
@@ -369,10 +392,11 @@ class UploadController extends Controller
         }
     }
 
-    private function SimpanPO($kd_brg,$qty,$periode,$nopo){
-        $q = TrnPo::find()
+    private function SimpanOthers($kd_brg,$qty,$periode,$type){
+        $q = TrnOthers::find()
         ->where(['kode_barang' => $kd_brg])
-        ->andWhere(['periode'=> $periode]);
+        ->andWhere(['periode'=> $periode])
+        ->andWhere(['type'=> $type]);
 
         if($q->count() > 0){
             $q2 = $q->one();
@@ -380,11 +404,40 @@ class UploadController extends Controller
             $q2->save(false);
 
         }else{
-            $new = new Sales();
+            $new = new TrnOthers();
             $new->kode_barang = (string)($kd_brg);
             $new->kuantitas = $qty;
             $new->periode = $periode;
-            $new->principal = $principal;
+            $new->type = $type;
+            if($new->save()){
+
+            }else{
+
+                var_dump($new->getErrors());
+                return false;
+            }
+        }
+
+        return true;
+    }
+
+    private function SimpanPO($kd_brg,$qty,$periode,$nopo){
+        $q = TrnPo::find()
+        ->where(['kode_barang' => $kd_brg])
+        ->andWhere(['periode'=> $periode])
+        ->andWhere(['no_po'=> $nopo]);
+
+        if($q->count() > 0){
+            $q2 = $q->one();
+            $q2->kuantitas = $q2->kuantitas + $qty;
+            $q2->save(false);
+
+        }else{
+            $new = new TrnPo();
+            $new->kode_barang = (string)($kd_brg);
+            $new->kuantitas = $qty;
+            $new->periode = $periode;
+            $new->no_po = $nopo;
             if($new->save()){
 
             }else{

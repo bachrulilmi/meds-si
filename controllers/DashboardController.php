@@ -11,6 +11,7 @@ use app\models\MstBarang;
 use app\models\Inventory;
 use app\models\Sales;
 use app\models\Reporting;
+use app\models\TrnOthers;
 
 
 class DashboardController extends Controller
@@ -60,6 +61,23 @@ class DashboardController extends Controller
             ->all();
 
         foreach ($q2 as $qval) {
+            $qcek = Reporting::find()
+            ->where(['kode_barang' => $qval->kode_barang])
+            ->andWhere(['periode'=> $periode]);
+            if($qcek->count() == 0){
+                $new = new Reporting();
+                $new->periode = $periode;
+                $new->kode_barang = (string)($qval->kode_barang);
+                $new->save();
+            }
+        }
+
+        //query ini melakukan insert semua kode barang dengan periode tertentu dari table sales(sales) namun di cek terlebih dahulu apakah sudah ada sebelumnya kode tersebut pada table reporting
+        $q2plus = TrnOthers::find()->select('kode_barang')->distinct()            
+            ->where(['periode'=> $periode])
+            ->all();
+
+        foreach ($q2plus as $qval) {
             $qcek = Reporting::find()
             ->where(['kode_barang' => $qval->kode_barang])
             ->andWhere(['periode'=> $periode]);
@@ -160,7 +178,46 @@ class DashboardController extends Controller
             }
         }  
 
+        //query untuk update semua data Proses ke table reporting
+        $q8 = TrnOthers::find()
+             ->select(['kode_barang', 'SUM(kuantitas) AS kuantitas' ])
+            ->where(['type'=>'PROSES'])           
+            ->andWhere(['periode'=> $periode])
+            ->groupBy('kode_barang')
+            ->all();
 
+        foreach ($q8 as $qval) {
+            $qcek = Reporting::find()
+            ->where(['kode_barang' => $qval->kode_barang])
+            ->andWhere(['periode'=> $periode]);
+            if($qcek->count() > 0){
+                $hasil = $qcek->one();
+                $hasil->proses = $qval->kuantitas;
+                $hasil->save();
+            }
+        }
+
+        //query untuk update semua data Stock OTW ke table reporting
+        $q9 = TrnOthers::find()
+             ->select(['kode_barang', 'SUM(kuantitas) AS kuantitas' ])
+            ->where(['type'=>'STOCK ON THE WAY'])           
+            ->andWhere(['periode'=> $periode])
+            ->groupBy('kode_barang')
+            ->all();
+
+        foreach ($q9 as $qval) {
+            $qcek = Reporting::find()
+            ->where(['kode_barang' => $qval->kode_barang])
+            ->andWhere(['periode'=> $periode]);
+            if($qcek->count() > 0){
+                $hasil = $qcek->one();
+                $hasil->stock_otw = $qval->kuantitas;
+                $hasil->save();
+            }
+        }    
+
+        Yii::$app->session->setFlash('success-generate');
+        return $this->redirect(['dashboard/stockvsales']);
         //return $this->render('index',['data' => $q,'periode'=>$periode, 'disti'=>$principal]);
     }
 

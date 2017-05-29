@@ -19,6 +19,7 @@
             ['label' => 'Upload Data Stock', 'icon' => 'file-code-o', 'url' => ['upload/index']],
             ['label' => 'Upload Data Sales', 'icon' => 'file-code-o', 'url' => ['upload/sales']],
             ['label' => 'Upload Data PO', 'icon' => 'file-code-o', 'url' => ['upload/po']],
+            ['label' => 'Upload Data Others', 'icon' => 'file-code-o', 'url' => ['upload/others']],
             ['label' => 'Manual Input Data', 'icon' => 'book', 'url' => ['upload/manual-input']],
             ['label' => 'Dashboard', 'icon' => 'dashboard', 'url' => ['dashboard/index']],
             ['label' => 'Report Stock vs Sales', 'icon' => 'dashboard', 'url' => ['dashboard/stockvsales']],

@@ -1,11 +1,11 @@
 <?php
 use yii\helpers\Url;
-use yii\helpers\Html;
 
 /* @var $this yii\web\View */
 
 $this->title = 'Best Inventory';
 ?>
+
 
 <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
@@ -17,7 +17,7 @@ $this->title = 'Best Inventory';
       <div class="modal-body">
       <center>
       <img src="image/balls.svg">
-        <p>Report anda sedang diproses, silahkan tunggu . . .</p>  
+        <p>Data anda sedang diproses, silahkan tunggu . . .</p>  
       </center>
       
       </div>
@@ -26,25 +26,24 @@ $this->title = 'Best Inventory';
 
   </div>
 </div>
-
 <!-- general form elements -->
 <div class="box box-primary">
   <div class="box-header with-border">
-    <h3 class="box-title">Report Stock vs Sales</h3>
+    <h3 class="box-title">Upload Data Others</h3>
   </div>
   <!-- /.box-header -->
   <!-- flash message -->
-  <?php if (Yii::$app->session->hasFlash('success-generate')): ?>
+  <?php if (Yii::$app->session->hasFlash('success-upload')): ?>
 
         <div class="alert alert-success alert-dismissible">
                 <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
                 <h4><i class="icon fa fa-check"></i> Success!</h4>
-                Report berhasil digenerate.
+                Data berhasil diupload.
               </div>
     <?php endif; ?>    
     <!-- flash message-end -->
   <!-- form start -->
-  <form id="formupload" role="form" action="<?= Url::to(['dashboard/report_stockvsales']); ?>" method="post" enctype="multipart/form-data">
+  <form id="formupload" role="form" action="<?= Url::to(['upload/process-data']); ?>" method="post" enctype="multipart/form-data">
     <input type="hidden" name="_csrf" value="<?=Yii::$app->request->getCsrfToken()?>" />
     <div class="box-body">
       <div class="row">
@@ -84,41 +83,22 @@ $this->title = 'Best Inventory';
         </div>
       </div>
 
-      
+      <input type="hidden" name="prin" value="Others">
+
+      <div class="form-group">
+        <label for="exampleInputFile">Upload File Laporan</label>
+        <input type="file" id="exampleInputFile" name="datareport">
+
+        <p class="help-block">File yang diperbolehkan hanya .xls maks 2 MB</p>
+      </div>
 
 
     </div>
     <!-- /.box-body -->
 
-
-
     <div class="box-footer">
-      <button id="tombolsubmit" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Generate Report</button>
+      <button id="tombolsubmit" type="submit" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Upload Data</button>
     </div>
   </form>
-</div>
-
-<div class="box box-primary">
-  <div class="box-header with-border">
-    <table id="example" class="table table-striped table-bordered" width="100%" cellspacing="0">
-      <thead>
-        <tr>
-          <th>Periode Report</th>
-
-        </tr>
-      </thead>
-      <tbody>
-
-<?php foreach ($data as $d): ?>
-      <tr>
-        
-          <td><a href="<?= Url::to(['dashboard/show-great-report', 'periode' =>$d->periode ]) ?>"><?= Html::encode($d->periode)?></a></td>
-
-        </tr>
-      <?php endforeach; ?>
-
-      </tbody>
-    </table>
-  </div>
 </div>
           <!-- /.box -->
