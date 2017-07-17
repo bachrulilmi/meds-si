@@ -58,4 +58,8 @@ class MstBarang extends \yii\db\ActiveRecord
     {
         return $this->hasMany(Reporting::className(), ['kode_barang' => 'kode_barang']);
     }
+    public function getTrnPo()
+    {
+        return $this->hasMany(TrnPo::className(), ['kode_barang' => 'kode_barang']);
+    }
 }

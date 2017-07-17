@@ -94,6 +94,7 @@ $this->title = 'Best Inventory';
               <option value="KP">KP</option>
               <option value="MHF BOGOR">MHF BOGOR</option>
               <option value="MHF PUSAT">MHF PUSAT</option>
+              <option value="DASA">DASA</option>
 
             </select>
           </div>

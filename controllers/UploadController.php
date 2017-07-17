@@ -181,7 +181,7 @@ class UploadController extends Controller
                    $query = MstBarang::find()->where(['alias' => $datacell]);
                    if($query->count() > 0){
                     $data = $query->one();
-                    $qty = intval($worksheet->getCell('M'.$row)->getValue())+intval($worksheet->getCell('O'.$row)->getValue());
+                    $qty = intval($worksheet->getCell('E'.$row)->getValue())+intval($worksheet->getCell('O'.$row)->getValue());
                     $this->SimpanInventory($data->kode_barang,$qty,$periode,$principal);
                             
                     }
@@ -230,6 +230,20 @@ class UploadController extends Controller
                 } 
         break;
 
+        case "DASA":
+               for ($row = 1; $row <= $lastRow; $row++) {
+
+                   $datacell = $worksheet->getCell('B'.$row)->getValue();
+                   $query = MstBarang::find()->where(['alias' => $datacell]);
+                   if($query->count() > 0){
+                    $data = $query->one();
+                    $qty = intval($worksheet->getCell('D'.$row)->getValue());
+                    $this->SimpanInventory($data->kode_barang,$qty,$periode,$principal);
+                            
+                    }
+                } 
+        break;
+
         case "IN":
                for ($row = 1; $row <= $lastRow; $row++) {
 
@@ -247,7 +261,7 @@ class UploadController extends Controller
         case "OUT - ALIDA":
                for ($row = 1; $row <= $lastRow; $row++) {
 
-                   $datacell = $worksheet->getCell('A'.$row)->getValue();
+                   $datacell = $worksheet->getCell('D'.$row)->getValue();
                    $query = MstBarang::find()->where(['alias' => $datacell]);
                    if($query->count() > 0){
                     $data = $query->one();
@@ -332,6 +346,20 @@ class UploadController extends Controller
                for ($row = 1; $row <= $lastRow; $row++) {
 
                    $datacell = $worksheet->getCell('E'.$row)->getValue();
+                   $query = MstBarang::find()->where(['alias' => $datacell]);
+                   if($query->count() > 0){
+                    $data = $query->one();
+                    $qty = intval($worksheet->getCell('F'.$row)->getValue());
+                    $this->SimpanSales($data->kode_barang,$qty,$periode,$principal);
+                            
+                    }
+                } 
+        break;
+
+        case "OUT - DASA":
+               for ($row = 1; $row <= $lastRow; $row++) {
+
+                   $datacell = $worksheet->getCell('D'.$row)->getValue();
                    $query = MstBarang::find()->where(['alias' => $datacell]);
                    if($query->count() > 0){
                     $data = $query->one();

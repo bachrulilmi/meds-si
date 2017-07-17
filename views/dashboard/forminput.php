@@ -60,6 +60,7 @@ $this->title = 'Best Inventory';
           <div class="form-group">
             <label>Distributor/Principal</label>
             <select name="prin" class="form-control">
+              <option value="Purchase Order">Purchase Order</option>
               <option value="BEST">Stock - BEST</option>
               <option value="PII">Stock - PII</option>
               <option value="ALIDA">Stock - ALIDA</option>
@@ -68,6 +69,7 @@ $this->title = 'Best Inventory';
               <option value="MHF BOGOR">Stock - MHF BOGOR</option>
               <option value="MHF PUSAT">Stock - MHF PUSAT</option>
               <option value="NSI">Stock - NSI</option>
+              <option value="DASA">Stock - DASA</option>
               <option value="IN">Sales - IN</option>
               <option value="OUT - ALIDA">Sales - ALIDA</option>
               <option value="OUT - KP">Sales - KP</option>
@@ -76,6 +78,7 @@ $this->title = 'Best Inventory';
               <option value="OUT - MHF PUSAT">Sales - MHF PUSAT</option>
               <option value="OUT - NSI">Sales - NSI</option>
               <option value="OUT - SURYATARA">Sales - SURYATARA</option>
+              <option value="OUT - DASA">Sales - DASA</option>
 
             </select>
           </div>

@@ -12,6 +12,7 @@ use app\models\Inventory;
 use app\models\Sales;
 use app\models\Reporting;
 use app\models\TrnOthers;
+use app\models\TrnPo;
 
 
 class DashboardController extends Controller
@@ -239,7 +240,7 @@ class DashboardController extends Controller
         $periode = $request->post('bulan')." ".$request->post('tahun');
         $principal = $request->post('prin');
 
-        if($principal == 'BEST' || $principal == 'PII' || $principal == 'ALIDA' || $principal == 'KP' || $principal == 'MAP' || $principal == 'MHF BOGOR' || $principal == 'MHF PUSAT' || $principal == 'NSI'){
+        if($principal == 'BEST' || $principal == 'PII' || $principal == 'ALIDA' || $principal == 'KP' || $principal == 'MAP' || $principal == 'MHF BOGOR' || $principal == 'MHF PUSAT' || $principal == 'NSI' || $principal == 'DASA'){
 
             $q = Inventory::find()
             ->with('mstBarang')
@@ -247,6 +248,13 @@ class DashboardController extends Controller
             ->andWhere(['principal'=> $principal])
             ->all();
 
+        }elseif($principal == 'Purchase Order'){
+            $q = TrnPo::find()
+            ->with('mstBarang')
+            ->where(['periode'=> $periode])
+            ->all();
+
+            return $this->render('report_po',['data' => $q,'periode'=>$periode, 'disti'=>$principal]);
         }else{
 
             $q = Sales::find()

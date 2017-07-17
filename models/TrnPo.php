@@ -46,4 +46,10 @@ class TrnPo extends \yii\db\ActiveRecord
             'kuantitas' => 'Kuantitas',
         ];
     }
+
+    public function getMstBarang()
+    {
+        return $this->hasOne(MstBarang::className(), ['kode_barang' => 'kode_barang']);
+
+    } 
 }
